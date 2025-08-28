@@ -1,0 +1,81 @@
+.main-btn {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: var(--font-size-p);
+  line-height: 20.48px;
+  position: relative;
+  cursor: pointer;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.main-btn svg {
+  max-width: 24px;
+}
+
+.banner__btn-main {
+  padding-top: 11.5px;
+  padding-bottom: 11.5px;
+  padding-left: 41px;
+  width: 207px;
+}
+
+.color-main {
+  background-color: var(--color-main);
+  color: var(--color-black);
+}
+
+.color-main svg {
+  fill: var(--color-black);
+}
+.color-secondary svg {
+  fill: #fff;
+}
+
+.color-secondary {
+  background-color: var(--color-black);
+  color: #fff;
+}
+
+.color-secondary svg {
+  fill: #fff;
+}
+
+.main-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  z-index: -1;
+  transition: transform 0.3s linear;
+}
+
+.main-btn.color-main::before {
+  background: var(--color-black);
+}
+
+.main-btn.color-secondary::before {
+  background: var(--color-main);
+}
+
+.main-btn:hover::before {
+  transform: scale(1);
+}
+
+.main-btn.color-main:hover {
+  color: #fff;
+}
+
+.main-btn.color-secondary:hover {
+  color: var(--color-black);
+}
+
+.main-btn.color-main:hover svg {
+  fill: #fff;
+}
+
+.main-btn.color-secondary:hover svg {
+  fill: var(--color-black);
+}

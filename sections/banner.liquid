@@ -1,21 +1,78 @@
 {{ 'banner.css' | asset_url | stylesheet_tag }}
 
-<section id="Banner-{{ section.id }}" class="hero-banner">
+{% liquid
+  assign widths = '832, 1200, 1600, 1920, 2560, 3840'
+%}
+
+<section id="Banner-{{ section.id }}" class="hero-banner page-width">
   {% comment %} Header {% endcomment %}
   <header class="banner__header">
     <div class="banner__logo">
       {% if section.settings.logo != blank %}
         {{ section.settings.logo | image_url: width: 152, height: 20 | image_tag }}
       {% else %}
-        {{ 'image' | placeholder_svg_tag }}
+        <p>{{ shop.name | json }}</p>
       {% endif %}
     </div>
     <div class="header__text">
       {{ section.settings.header_title }}
     </div>
+    <div class="banner__btn">
+      {% render 'main-button', content: section.settings.btn_text, type: 'main', classname: 'banner__btn-main' %}
+    </div>
   </header>
   {% comment %} Banner body {% endcomment %}
-  <div></div>
+  <div class="banner-main">
+    <div class="banner__main-img">
+      {% if section.settings.main_img != blank %}
+        {{
+          section.settings.main_img
+          | image_url: width: 3840
+          | image_tag:
+            width: section.settings.main_img.width,
+            widths: widths,
+            height: section.settings.main_img.height,
+            alt: 'banner image',
+            class: 'hero__image',
+            sizes: '(max-width: 750) 100vw, 33vw',
+            preload: true
+        }}
+      {% else %}
+        {{ 'lifestyle-2' | placeholder_svg_tag }}
+      {% endif %}
+    </div>
+    <div class="banner__text-img">
+      <div class="banner__text">
+        <h2>{{ section.settings.main_title }}</h2>
+        <p>{{ section.settings.main_p }}</p>
+        {% render 'main-button', type: 'secondary', content: section.settings.main_btn, classname: 'banner-btn' %}
+      </div>
+      <div class="banner__secondary-img">
+        {% if section.settings.secondary_img != blank %}
+          {{
+            section.settings.secondary_img
+            | image_url: width: 3840
+            | image_tag:
+              width: section.settings.secondary_img,
+              widths: widths,
+              height: section.settings.secondary_img,
+              alt: 'banner image',
+              class: 'hero__image',
+              sizes: '(max-width: 750) 100vw, 33vw',
+              preload: true
+          }}
+        {% else %}
+          {{ 'lifestyle-2' | placeholder_svg_tag }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% comment %} Banner Footer {% endcomment %}
+
+  <div class="banner__footer">
+    <div class="banner__footer-text">{{ section.settings.end_text }}</div>
+  </div>
 </section>
 
 {% schema %}
@@ -36,6 +93,54 @@
       "id": "header_title",
       "label": "Header Title",
       "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "choose gift"
+    },
+    {
+      "type": "header",
+      "content": "Main Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_img",
+      "label": "Main Image"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "text",
+      "id": "main_p",
+      "label": "Main Parapgraph",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "text",
+      "id": "main_btn",
+      "label": "Main Button",
+      "default": "Shop Now"
+    },
+    {
+      "type": "image_picker",
+      "id": "secondary_img",
+      "label": "Secondary Image"
+    },
+    {
+      "type": "header",
+      "content": "End Content"
+    },
+    {
+      "type": "text",
+      "id": "end_text",
+      "label": "Bottom Text",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
     }
   ],
   "presets": [

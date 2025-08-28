@@ -1,13 +1,24 @@
+.hero-banner {
+  position: relative;
+}
+
+/* Banner Header */
+
 .banner__header {
-  display: flex;
   background-color: var(--color-secondary);
+  display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px 50.78px;
+  padding-left: var(--spacing-x-s);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .banner__logo {
   width: 151.44px;
-  padding-left: var(--spacing-x-s);
 }
 
 .banner__logo img,
@@ -18,4 +29,58 @@
 .header__text {
   font-size: var(--font-size-p);
   line-height: 13.42px;
+}
+
+/* Banner main content */
+
+.banner__text-img {
+  display: flex;
+  padding-left: var(--spacing-x-l);
+}
+
+.banner__text {
+  max-width: 483px;
+}
+
+.banner__text h2 {
+  font-size: var(--font-size-h);
+  font-weight: 500;
+  line-height: 100%;
+  margin-bottom: 50px;
+}
+
+.banner__text .banner-btn {
+  padding-left: 55px;
+  padding-top: 14.26px;
+  padding-bottom: 14.75px;
+  width: 220px;
+  font-size: 16px;
+  line-height: 20.48px;
+}
+
+.banner__text p {
+  font-size: 20px;
+  line-height: 140%;
+  margin-bottom: 50px;
+}
+
+.banner__secondary-img {
+  flex-grow: 1;
+}
+
+.banner__secondary-img svg,
+.banner__secondary-img img {
+  width: unset;
+}
+
+/* Banner End */
+
+.banner__footer-text {
+  background-color: var(--color-secondary);
+  padding: 10px 0;
+  text-align: center;
+  font-size: 16px;
+  line-height: 13.42px;
+  letter-spacing: 0px;
+  text-align: center;
 }

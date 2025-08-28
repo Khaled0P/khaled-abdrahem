@@ -1,0 +1,14 @@
+{% doc %}
+  Renders a button with customizable content (add functionality with JS)
+
+  @param {string} type - main or secondary for bg color and hover
+  @param {string} [classname] - custom classes
+  @param {string} content - button text
+{% enddoc %}
+
+{{ 'main-button.css' | asset_url | stylesheet_tag }}
+
+<button class="color-{{ type }} {% if classname != blank %} {{ classname }}  {% endif %} main-btn">
+  {{ content }}
+  {% render 'arrow-2' %}
+</button>
