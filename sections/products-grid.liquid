@@ -1,0 +1,77 @@
+{{ 'products-grid.css' | asset_url | stylesheet_tag }}
+
+<section id="Grid-{{ section.id }}" class="product__grid-section page-width">
+  <h2 class="grid-title">{{ section.settings.title }}</h2>
+  <div class="product-grid">
+    {% for block in section.blocks %}
+      {% if block.settings.product != blank %}
+        {% assign product = all_products[block.settings.product] %}
+        {% if product %}
+          <div class="grid-item">
+            <img
+              src="{{ product.featured_image | image_url: width: 600 }}"
+              srcset="
+                {{ product.featured_image | image_url: width:300 }} 300w,
+                {{ product.featured_image | image_url: width:600 }} 600w,
+                {{ product.featured_image | image_url: width:900 }} 900w,
+              "
+              width="{{ product.featured_image.width }}"
+              height="{{ product.featured_image.height }}"
+              alt="{{ product.title | escape }}"
+              loading="lazy"
+              sizes="(max-width: 750px) 100vw, 33vw"
+              class="grid-img"
+            >
+            <button class="open-popup-btn">Popup</button>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% render 'product-popup' %}
+</section>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Tisso vison in the wild"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Product Grid",
+      "category": "t:categories.collections",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,23 @@
+{% comment %}
+  - Product popup to show product info, select variant and add to cart
+  - no extra variables
+
+  usage: {% render 'product-popup' %}
+{% endcomment %}
+
+<div id="product-popup" class="popup hidden">
+  <div class="popup-inner">
+    <!-- Close button -->
+    <button id="popup-close" class="popup-close">{% render 'close-icon' %}</button>
+
+    <!-- Product info -->
+
+    <h2 id="popup-title" class="popup-title"></h2>
+    <p id="popup-price" class="popup-price"></p>
+    <p id="popup-description" class="description"></p>
+
+    <!-- Variant selectors -->
+    <div id="popup-variants" class="popup-variants"></div>
+    <button id="popup-add">ADD TO CART</button>
+  </div>
+</div>
