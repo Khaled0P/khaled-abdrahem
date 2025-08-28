@@ -1,4 +1,5 @@
 {{ 'products-grid.css' | asset_url | stylesheet_tag }}
+<script src="{{ "popup.js" | asset_url}}" defer></script>
 
 <section id="Grid-{{ section.id }}" class="product__grid-section page-width">
   <h2 class="grid-title">{{ section.settings.title }}</h2>
@@ -22,7 +23,7 @@
               sizes="(max-width: 750px) 100vw, 33vw"
               class="grid-img"
             >
-            <button class="open-popup-btn">Popup</button>
+            <button class="open-popup-btn" data-product-popup="{{ product.handle }}">Popup</button>
           </div>
         {% endif %}
       {% endif %}
