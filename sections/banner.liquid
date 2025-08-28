@@ -1,0 +1,48 @@
+{{ 'banner.css' | asset_url | stylesheet_tag }}
+
+<section id="Banner-{{ section.id }}" class="hero-banner">
+  {% comment %} Header {% endcomment %}
+  <header class="banner__header">
+    <div class="banner__logo">
+      {% if section.settings.logo != blank %}
+        {{ section.settings.logo | image_url: width: 152, height: 20 | image_tag }}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag }}
+      {% endif %}
+    </div>
+    <div class="header__text">
+      {{ section.settings.header_title }}
+    </div>
+  </header>
+  {% comment %} Banner body {% endcomment %}
+  <div></div>
+</section>
+
+{% schema %}
+{
+  "name": "Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Banner Logo"
+    },
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Header Title",
+      "default": "Find the ideal gift for your loved ones."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner",
+      "category": "t:categories.banners"
+    }
+  ]
+}
+{% endschema %}

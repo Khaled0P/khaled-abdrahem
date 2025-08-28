@@ -1,0 +1,21 @@
+.banner__header {
+  display: flex;
+  background-color: var(--color-secondary);
+  justify-content: space-between;
+  padding: 10px 50.78px;
+}
+
+.banner__logo {
+  width: 151.44px;
+  padding-left: var(--spacing-x-s);
+}
+
+.banner__logo img,
+.banner__logo svg {
+  max-width: 100%;
+}
+
+.header__text {
+  font-size: var(--font-size-p);
+  line-height: 13.42px;
+}
