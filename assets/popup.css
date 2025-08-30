@@ -1,0 +1,146 @@
+.popup {
+  font-family: var(--font-family-main);
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.popup-inner {
+  background-color: #fff;
+  padding: 36px 20px 25px 20px;
+  max-width: 311px;
+  position: relative;
+}
+
+.product-content {
+  display: flex;
+  gap: 8px;
+}
+
+.product-content img {
+  width: 120px;
+  max-width: unset;
+  height: 140px;
+  object-fit: cover;
+}
+
+.product-content h2 {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 120%;
+  padding: 13px 0 20px;
+  margin: 0;
+}
+
+.product-content .popup-price {
+  /* font-family: Lustria; */
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  padding-bottom: 12px;
+  margin: 0;
+}
+
+.product-content .popup-description,
+.product-content .popup-description p {
+  font-weight: 300;
+  font-style: Light;
+  font-size: 14px;
+  line-height: 110.00000000000001%;
+  letter-spacing: -1%;
+  max-width: 146px;
+  max-height: 60px;
+  margin: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 10px;
+}
+
+.popup-close {
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 12.7px;
+  right: 15.73px;
+  cursor: pointer;
+}
+
+.popup-variants {
+  margin-bottom: 51px;
+}
+
+.variant-name {
+  font-family: var(--font-family-main);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+  letter-spacing: 0%;
+  margin-top: 6px;
+}
+
+.default-select {
+  padding-block: var(--padding-md);
+  padding-inline: var(--padding-lg)
+    calc(var(--padding-lg) + var(--icon-size-2xs));
+  border-radius: 0;
+  border: 0.5px solid black;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.color-options {
+  display: flex;
+  width: 100%;
+}
+
+.color-btn {
+  font-family: var(--font-family-main);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: -2%;
+  text-transform: capitalize;
+  background-color: transparent;
+  border: 0.5px solid black;
+  padding: 11px 15px;
+  flex-grow: 1;
+  cursor: pointer;
+  position: relative;
+}
+
+.color-btn.active {
+  color: white;
+}
+
+.color-btn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5.8px;
+  height: 100%;
+  background: var(--stripe-color, transparent);
+  border: 0.5px solid #000;
+}
+
+.add-cart-btn {
+  padding: 12px 0 12px 75px;
+  width: 271px;
+  font-family: var(--font-family-main);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20.48px;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+}
+
+.popup .add-cart-btn svg {
+  width: 33.7px;
+  max-width: unset;
+}

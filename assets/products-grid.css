@@ -15,3 +15,43 @@
   grid-template-columns: repeat(auto-fit, minmax(433px, 1fr));
   gap: 20px;
 }
+
+.grid-item {
+  position: relative;
+}
+
+.open-popup-btn {
+  background: none;
+  border: none;
+  position: absolute;
+  /* default popup btn position */
+  top: 14px;
+  right: 52px;
+}
+
+@media screen and (min-width: 750px) {
+  .product-grid:nth-child(1) .open-popup-btn {
+    top: 238px;
+    right: 154.5px;
+  }
+  .product-grid:nth-child(2) .open-popup-btn {
+    top: 222px;
+    right: 55.5px;
+  }
+  .open-popup-btn:nth-child(3) .open-popup-btn {
+    top: 82px;
+    right: 150px;
+  }
+  .product-grid:nth-child(4) .open-popup-btn {
+    top: 71px;
+    right: 110px;
+  }
+  .product-grid:nth-child(5) .open-popup-btn {
+    top: 104px;
+    right: 198.5px;
+  }
+  .product-grid:nth-child(6) .open-popup-btn {
+    top: 164px;
+    right: 915px;
+  }
+}

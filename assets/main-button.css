@@ -3,6 +3,7 @@
   align-items: center;
   gap: 18px;
   font-size: var(--font-size-p);
+  text-wrap: nowrap;
   line-height: 20.48px;
   position: relative;
   cursor: pointer;

@@ -5,6 +5,8 @@
   usage: {% render 'product-popup' %}
 {% endcomment %}
 
+{{ 'popup.css' | asset_url | stylesheet_tag }}
+
 <div id="product-popup" class="popup hidden">
   <div class="popup-inner">
     <!-- Close button -->
@@ -12,12 +14,17 @@
 
     <!-- Product info -->
 
-    <h2 id="popup-title" class="popup-title"></h2>
-    <p id="popup-price" class="popup-price"></p>
-    <p id="popup-description" class="popup-description"></p>
+    <div class="product-content">
+      <div class="img-container"><img width="120" height="140" id="popup-img"></div>
+      <div class="text-container">
+        <h2 id="popup-title" class="popup-title"></h2>
+        <p id="popup-price" class="popup-price"></p>
+        <p id="popup-description" class="popup-description"></p>
+      </div>
+    </div>
 
     <!-- Variant selectors -->
     <div id="popup-variants" class="popup-variants"></div>
-    <button id="popup-add">ADD TO CART</button>
+    {% render 'main-button', type: 'secondary', id: 'popup-add', content: 'ADD TO CART', classname: 'add-cart-btn' %}
   </div>
 </div>

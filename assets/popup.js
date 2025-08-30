@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtn = document.getElementById('popup-close');
   const titleEl = document.getElementById('popup-title');
   const priceEl = document.getElementById('popup-price');
+  const imgEl = document.getElementById('popup-img')
   const descEl = document.getElementById('popup-description');
   const variantsEl = document.getElementById('popup-variants');
   const addBtn = document.getElementById('popup-add');
@@ -25,22 +26,58 @@ document.addEventListener('DOMContentLoaded', () => {
       titleEl.textContent = product.title;
       priceEl.textContent = formatMoney(product.price);
       descEl.innerHTML = product.description;
+      imgEl.src = product.featured_image
 
       //render variant selectors
-      variantsEl.innerHTML = '';
+      variantsEl.innerHTML = ''; //clear previous popup data
+      
       product.options.forEach((opt, idx) => {
-        const select = document.createElement('select');
-        select.dataset.index = idx;
+        if (opt.name.toLowerCase() === 'color') {
+          // Render as buttons
+          const variantTtile = document.createElement('div');
+          variantTtile.textContent= opt.name;
+          variantTtile.classList.add('variant-name');
+          const wrapper = document.createElement('div');
+          wrapper.classList.add('color-options');
+          opt.values.forEach((v) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.textContent = v;
+            btn.dataset.index = idx;
+            btn.dataset.value = v;
+            btn.classList.add('color-btn');
+            btn.style.setProperty('--stripe-color', v.toLowerCase()); //set side colored stripe
 
-        opt.values.forEach((v) => {
-          const optionsEl = document.createElement('option');
-          optionsEl.value = v;
-          optionsEl.textContent = v;
-          select.appendChild(optionsEl);
-          console.log(select);
-          console.log(v);
-        });
-        variantsEl.appendChild(select);
+            btn.addEventListener('click', () => {
+              // clear previous active button in this group
+              wrapper
+                .querySelectorAll('.color-btn')
+                .forEach((b) => b.classList.remove('active'));
+              btn.classList.add('active');
+            });
+
+            wrapper.appendChild(btn);
+          });
+          variantsEl.appendChild(variantTtile);
+          variantsEl.appendChild(wrapper);
+        } else {
+          // default: render as select
+          const variantTitle = document.createElement('div');
+          variantTitle.textContent= opt.name;
+          variantTitle.classList.add('variant-name');
+          const select = document.createElement('select');
+          select.classList.add('default-select')
+          select.dataset.index = idx;
+
+          opt.values.forEach((v) => {
+            const optionEl = document.createElement('option');
+            optionEl.value = v;
+            optionEl.textContent = v;
+            select.appendChild(optionEl);
+          });
+          variantsEl.appendChild(variantTitle)
+          variantsEl.appendChild(select);
+        }
       });
       popup.classList.remove('hidden');
     });
@@ -56,9 +93,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!currentProduct) return;
 
     // find selected variant
-    const selectedOptions = Array.from(
-      variantsEl.querySelectorAll('select')
-    ).map((s) => s.value);
+    const selectedOptions = currentProduct.options.map((opt, idx) => {
+      if (opt.name.toLowerCase() === 'color') {
+        const activeBtn = variantsEl.querySelector(
+          `.color-btn[data-index="${idx}"].active`
+        );
+        return activeBtn ? activeBtn.dataset.value : null;
+      } else {
+        const select = variantsEl.querySelector(`select[data-index="${idx}"]`);
+        return select ? select.value : null;
+      }
+    });
 
     const variant = currentProduct.variants.find((v) => {
       return v.options.every((opt, idx) => opt === selectedOptions[idx]);
@@ -79,8 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
       );
       const jacketVariant = jacket.variants[0]; // get first available variant
       console.log(jacket);
-      
-      await addToCart(jacketVariant, 1);
+
+      await addToCart(jacketVariant.id, 1);
     }
 
     popup.classList.add('hidden'); // close popup after adding
@@ -88,9 +133,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //Shopify money formatting
   function formatMoney(cents) {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('de-DE', {
       style: 'currency',
-      currency: 'CAD',
+      currency: 'EUR',
+      currencyDisplay: 'symbol'
     }).format(cents / 100);
   }
 
