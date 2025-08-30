@@ -56,6 +56,7 @@
   width: 220px;
   font-size: 16px;
   line-height: 20.48px;
+  margin-bottom: 51px;
 }
 
 .banner__text p {
@@ -65,12 +66,19 @@
 }
 
 .banner__secondary-img {
-  flex-grow: 1;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
 }
 
 .banner__secondary-img svg,
 .banner__secondary-img img {
-  width: unset;
+  /* match current design */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160%;
+  max-width: unset;
 }
 
 /* Banner End */
