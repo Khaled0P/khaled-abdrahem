@@ -69,10 +69,64 @@
         "main_btn": "Shop Now",
         "end_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
       }
+    },
+    "products_grid_aWp3Ey": {
+      "type": "products-grid",
+      "blocks": {
+        "product_qPDDLH": {
+          "type": "product",
+          "settings": {
+            "product": "black-leather-bag"
+          }
+        },
+        "product_3kryTt": {
+          "type": "product",
+          "settings": {
+            "product": "blue-silk-tuxedo"
+          }
+        },
+        "product_XyMgE3": {
+          "type": "product",
+          "settings": {
+            "product": "chequered-red-shirt"
+          }
+        },
+        "product_AbEwVE": {
+          "type": "product",
+          "settings": {
+            "product": "classic-leather-jacket"
+          }
+        },
+        "product_W6RQ4a": {
+          "type": "product",
+          "settings": {
+            "product": "classic-varsity-top"
+          }
+        },
+        "product_J7JHmp": {
+          "type": "product",
+          "settings": {
+            "product": "dark-denim-top"
+          }
+        }
+      },
+      "block_order": [
+        "product_qPDDLH",
+        "product_3kryTt",
+        "product_XyMgE3",
+        "product_AbEwVE",
+        "product_W6RQ4a",
+        "product_J7JHmp"
+      ],
+      "name": "Product Grid",
+      "settings": {
+        "title": "Tisso vison in the wild"
+      }
     }
   },
   "order": [
     "main",
-    "banner_wfMyRG"
+    "banner_wfMyRG",
+    "products_grid_aWp3Ey"
   ]
 }
